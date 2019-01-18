@@ -1,0 +1,82 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList
+@model IPagedList<DappSniper.Net.Models.RankViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>RecordId</th>
+            <th>No</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Protocol</th>
+            <th>Balance</th>
+            <th>Users24h</th>
+            <th>Volume24h</th>
+            <th>Volume7d</th>
+            <th>Tx24h</th>
+            <th>Tx7d</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecordId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Protocol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Users24h)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume24h)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume7d)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tx24h)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tx7d)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.PagedListPager(Model, pageNumer => Url.Action("Index",
+    new
+    {
+        PageNumber = pageNumer
+    }))
+</div>
